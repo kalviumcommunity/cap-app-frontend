@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #14171A;
+  --color-asphalt: #2B3036;
+  --color-asphalt-light: #3D444D;
+  --color-taxi-yellow: #FFC400;
+  --color-taxi-yellow-hover: #EBB500;
+  --color-signal-white: #FAFAF7;
+  --color-go-green: #16A34A;
+  --color-stop-red: #D93025;
+  --color-curb: #64748B;
+  --color-road-border: #E2E8F0;
+  --color-surface-subtle: #F4F4F1;
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer components {
+  .card {
+    border-radius: 1rem;
+    border: 1px solid rgba(43, 48, 54, 0.1);
+    background-color: #ffffff;
+    padding: 1.25rem;
+    box-shadow: 0 4px 20px -4px rgba(20, 23, 26, 0.05);
+  }
+
+  .field {
+    width: 100%;
+    min-height: 44px;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(43, 48, 54, 0.2);
+    background-color: #FAFAF7;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #14171A;
+    outline: none;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .field::placeholder {
+    color: #64748B;
+  }
+  .field:hover {
+    border-color: rgba(43, 48, 54, 0.4);
+  }
+  .field:focus {
+    border-color: #14171A;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.35);
+  }
+
+  .btn {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    background-color: #FFC400;
+    padding: 0.625rem 1.25rem;
+    font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #14171A;
+    border: 1px solid rgba(20, 23, 26, 0.1);
+    transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+  }
+  .btn:hover:not(:disabled) {
+    background-color: #EBB500;
+  }
+  .btn:active:not(:disabled) {
+    transform: scale(0.985);
+  }
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(20, 23, 26, 0.25);
+  }
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(43, 48, 54, 0.2);
+    background-color: transparent;
+    padding: 0.625rem 1.25rem;
+    font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #14171A;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    cursor: pointer;
+  }
+  .btn-ghost:hover:not(:disabled) {
+    background-color: rgba(43, 48, 54, 0.05);
+    border-color: rgba(43, 48, 54, 0.35);
+  }
+  .btn-ghost:active:not(:disabled) {
+    transform: scale(0.985);
+  }
+  .btn-ghost:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(43, 48, 54, 0.2);
+  }
+  .btn-ghost:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+/* Custom Map Marker styles */
+.custom-map-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.marker-pickup-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+}
+
+.marker-pickup-core {
+  position: relative;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background-color: #16A34A;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.radar-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  background-color: rgba(22, 163, 74, 0.35);
+  animation: radar-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes radar-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+.marker-drop-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.marker-drop-core {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background-color: #D93025;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.marker-driver-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: #14171A;
+  border: 3px solid #FFC400;
+  color: #FFC400;
+  box-shadow: 0 4px 12px rgba(20, 23, 26, 0.35);
+}
+
+/* Custom Leaflet Tooltip */
+.leaflet-tooltip.transit-tooltip {
+  background-color: #14171A;
+  color: #FAFAF7;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+.leaflet-tooltip-top.transit-tooltip:before {
+  border-top-color: #14171A;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .radar-pulse-ring {
+    animation: none !important;
+    opacity: 0.35 !important;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styling for receipts */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  header, nav, footer, .print-hide, .btn, .btn-ghost {
+    display: none !important;
+  }
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
